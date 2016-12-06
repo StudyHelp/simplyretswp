@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c79b740600d0c3efb167b2d5fd4cc889",
-    "content-hash": "8f2ba74c4b2dddfe0832367c953fa578",
+    "hash": "fa0d7957133a0967a46f7b64f373a21d",
+    "content-hash": "027b06e53437989d661a957a9256734a",
     "packages": [
         {
             "name": "egeloen/google-map",
-            "version": "dev-dev-stable",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CodyReichert/ivory-google-map.git",
-                "reference": "5abf51ecea561f03c09f372b2219ecfffc8a4b80"
+                "reference": "9770a3f47888494e9f2d449144508bc805af124f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CodyReichert/ivory-google-map/zipball/5abf51ecea561f03c09f372b2219ecfffc8a4b80",
-                "reference": "5abf51ecea561f03c09f372b2219ecfffc8a4b80",
+                "url": "https://api.github.com/repos/CodyReichert/ivory-google-map/zipball/9770a3f47888494e9f2d449144508bc805af124f",
+                "reference": "9770a3f47888494e9f2d449144508bc805af124f",
                 "shasum": ""
             },
             "require": {
@@ -60,9 +60,9 @@
                 "google map"
             ],
             "support": {
-                "source": "https://github.com/CodyReichert/ivory-google-map/tree/dev-stable"
+                "source": "https://github.com/CodyReichert/ivory-google-map/tree/1.4.1"
             },
-            "time": "2016-07-25 20:17:54"
+            "time": "2014-10-30 19:30:44"
         },
         {
             "name": "egeloen/json-builder",
@@ -242,9 +242,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "egeloen/google-map": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
