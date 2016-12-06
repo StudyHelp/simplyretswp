@@ -1,6 +1,6 @@
 {
     "name": "studyhelp/simplyretswp",
-    "type": "wp-simplyrets-fixed",
+    "type": "wordpress-plugin",
     "repositories": [
         {
             "type": "vcs",
