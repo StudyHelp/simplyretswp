@@ -1257,40 +1257,32 @@ HTML;
 
 
             // append markup for this listing to the content
+            $propText = abbrToText($propType);
             $resultsMarkup .= <<<HTML
-              <hr>
-              <div class="sr-listing">
-                <a href="$link">
-                  <div class="sr-photo" style="background-image:url('$main_photo');">
-                  </div>
-                </a>
-                <div class="sr-primary-data">
-                  <a href="$link">
-                    <h4>$address
-                    <span class="sr-price"><i>$listing_USD</i></span></h4>
-                  </a>
-                </div>
-                <div class="sr-secondary-data">
-                  <ul class="sr-data-column">
-                    $cityMarkup
-                    $yearMarkup
-                    $mlsidMarkup
-                  </ul>
-                  <ul class="sr-data-column">
-                    $bedsMarkup
-                    $bathsMarkup
-                    $areaMarkup
-                  </ul>
-                </div>
-                <div style="clear:both;">
-                  <div style="text-align:right;display:block">
-                    <span style="position:absolute;left:0">
-                      <a href="$link">More details</a>
-                    </span>
-                    $compliance_markup
-                  </div>
-                </div>
-              </div>
+            <div class="sr-listing--gallery">            	
+              	<div class="sr-listing">
+	                <a href="$link">
+	                  	<div class="sr-photo" style="background-image:url('$main_photo');">
+		                  	<div class="sr-listing--overlay">              
+		                  		<h3 class="sr-listing--price sr-listing--data">$listing_USD</h3>
+				                <div class="sr-primary-data sr-listing--data">
+				                  	<a href="$link">
+				                    	<h4 class="sr-listing--data">$propText for sale</h4>
+				                  	</a>
+				                </div>
+				                <div class="sr-secondary-data sr-listing--data">
+				                  	<ul class="sr-data-column sr-listing--data">
+				                    	$bedsMarkup
+				                    	$bathsMarkup
+				                    	$areaMarkup
+				                  	</ul>
+				                  	<p class="sr-listing-address sr-listing--data">$address, $city</p>
+				                </div>
+			            	</div>
+	            		</div>
+	            	</a>
+              	</div>
+          	</div>
 HTML;
 
         }
@@ -1503,7 +1495,6 @@ HTML;
 
     public static function srListingSliderGenerator( $response, $settings ) {
         $listings = $response['response'];
-        $inner;
 
         $last_update = $response['lastUpdate'];
         $disclaimer = SrUtils::mkDisclaimerText($last_update);
@@ -1604,4 +1595,18 @@ HTML;
         return $lh_send_details;
 
     }
+}
+
+
+function abbrToText($abbr) {
+    $abbrList = [
+        'RES' => 'Residence',
+        'RNT' => 'Rent'
+    ];
+
+    if (array_key_exists($abbr, $abbrList)) {
+        return $abbrList[$abbr];
+    }
+
+    return $abbr;
 }
