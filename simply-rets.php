@@ -16,7 +16,7 @@ Copyright (c) SimplyRETS 2014 - 2015
 $plugin = plugin_basename(__FILE__);
 $php_version = phpversion();
 
-require __DIR__.'/vendor/autoload.php';
+//require __DIR__.'/vendor/autoload.php';
 
 require_once( plugin_dir_path(__FILE__) . 'simply-rets-utils.php' );
 require_once( plugin_dir_path(__FILE__) . 'simply-rets-post-pages.php' );
