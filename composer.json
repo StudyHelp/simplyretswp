@@ -1,5 +1,6 @@
 {
     "name": "studyhelp/simplyretswp",
+    "type": "wp-simplyrets-fixed",
     "repositories": [
         {
             "type": "vcs",
@@ -8,6 +9,7 @@
     ],
     "require": {
         "egeloen/google-map": "1.4.1",
-        "widop/http-adapter": "1.1.0"
+        "widop/http-adapter": "1.1.0",
+        "composer/installers": "~1.0"
     }
 }
