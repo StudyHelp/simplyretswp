@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e66ffde27c468dffe67e3a525e2e92ca",
-    "content-hash": "f0dae59c910072203c5572772ea41004",
+    "hash": "723e63c3422bb01a32333688ad1c07e6",
+    "content-hash": "a42ad3351e4019b34faec03452f01374",
     "packages": [
         {
             "name": "composer/installers",
@@ -109,16 +109,16 @@
         },
         {
             "name": "egeloen/google-map",
-            "version": "1.4.1",
+            "version": "dev-dev-stable",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CodyReichert/ivory-google-map.git",
-                "reference": "9770a3f47888494e9f2d449144508bc805af124f"
+                "reference": "5abf51ecea561f03c09f372b2219ecfffc8a4b80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CodyReichert/ivory-google-map/zipball/9770a3f47888494e9f2d449144508bc805af124f",
-                "reference": "9770a3f47888494e9f2d449144508bc805af124f",
+                "url": "https://api.github.com/repos/CodyReichert/ivory-google-map/zipball/5abf51ecea561f03c09f372b2219ecfffc8a4b80",
+                "reference": "5abf51ecea561f03c09f372b2219ecfffc8a4b80",
                 "shasum": ""
             },
             "require": {
@@ -160,9 +160,9 @@
                 "google map"
             ],
             "support": {
-                "source": "https://github.com/CodyReichert/ivory-google-map/tree/1.4.1"
+                "source": "https://github.com/CodyReichert/ivory-google-map/tree/dev-stable"
             },
-            "time": "2014-10-30 19:30:44"
+            "time": "2016-07-25 20:17:54"
         },
         {
             "name": "egeloen/json-builder",
@@ -342,7 +342,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "egeloen/google-map": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
