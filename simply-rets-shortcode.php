@@ -1,3 +1,4 @@
+@@ -1,722 +0,0 @@
 <?php
 
 /*
@@ -624,26 +625,27 @@ HTML;
 
         ?>
         <div id="sr-search-wrapper">
-          <h3>Search Listings</h3>
           <form method="get" class="sr-search" action="<?php echo $home_url; ?>">
             <input type="hidden" name="sr-listings" value="sr-search">
 
             <div class="sr-minmax-filters">
               <div class="sr-search-field" id="sr-search-keywords">
-                <input name="sr_keywords"
+                <input id="search-field" name="sr_keywords"
                        type="text"
-                       placeholder="Subdivision, Zipcode, MLS Area, MLS Number, or Market Area"
-                       value="<?php echo $keywords ?>" />
+                       placeholder="Enter an address, city, or zip"
+                       value="<?php echo $keywords ?>" /><input id="search-submit" class="submit button btn" type="submit" value="Search">
               </div>
-
+              <!--
               <div class="sr-search-field" id="sr-search-ptype">
                 <select name="sr_ptype">
                   <?php echo $default_type_option; ?>
                   <?php echo $type_options; ?>
                 </select>
               </div>
+              -->
             </div>
 
+            <!--hide stupid fields
             <div class="sr-minmax-filters">
               <div class="sr-search-field" id="sr-search-minprice">
                 <input name="sr_minprice" step="1000" min="0" type="number" value="<?php echo $minprice; ?>" placeholder="Min Price.." />
@@ -666,15 +668,15 @@ HTML;
                 <input name="sr_maxbaths" min="0" type="number" value="<?php echo $maxbaths; ?>" placeholder="Max Baths.." />
               </div>
             </div>
-
+			End hide unnecessary fields-->
             <input type="hidden" name="sr_vendor"  value="<?php echo $vendor; ?>"  />
             <input type="hidden" name="sr_brokers" value="<?php echo $brokers; ?>" />
             <input type="hidden" name="sr_agent"   value="<?php echo $agent; ?>" />
             <input type="hidden" name="limit"      value="<?php echo $limit; ?>" />
 
             <div>
-                <input class="submit button btn" type="submit" value="Search Properties">
-
+                
+ 			<!--hide stupid fields
                 <div class="sr-sort-wrapper">
                     <label for="sr_sort">Sort by: </label>
                     <select class="select" name="sr_sort">
@@ -684,7 +686,9 @@ HTML;
                         <option value="listdate"   <?php echo $sort_date_lh ?> > List date - Old to New</option>
                     </select>
                 </div>
+                -->
             </div>
+
 
           </form>
         </div>
