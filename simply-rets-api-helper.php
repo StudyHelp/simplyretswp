@@ -1063,9 +1063,12 @@ HTML;
                 $mls_area
                 $mlsid
               </tbody>
-            </table>
-            {$contact_markup}
+            </table>          
             </div>
+            <div class="col-sm-4">
+                {$contact_markup}
+            </div>
+
             $mapMarkup
             <script>$lh_analytics</script>
           </div>
