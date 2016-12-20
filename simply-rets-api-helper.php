@@ -206,6 +206,7 @@ class SimplyRetsApiHelper {
      * fall back to file_get_contents().
     */
     public static function srApiRequest( $url ) {
+        $pag_links = null;
         $wp_version = get_bloginfo('version');
         $php_version = phpversion();
 
@@ -454,6 +455,7 @@ HTML;
      */
     public static function srDetailsGallery( $photos ) {
         $photo_gallery = array();
+        $address = null;
 
         if( empty($photos) ) {
              $main_photo = plugins_url( 'assets/img/defprop.jpg', __FILE__ );
@@ -502,6 +504,9 @@ HTML;
     public static function srResidentialDetailsGenerator( $listing ) {
         $br = "<br>";
         $cont = "";
+        $acres = null;
+        $days_on_market = null;
+        $zip = null;
         $contact_page = get_option('sr_contact_page');
 
         $last_update = $listing['lastUpdate'];
@@ -841,7 +846,6 @@ HTML;
         $listing_agent_id    = $listing->agent->id;
         $listing_agent_name  = $listing->agent->firstName . ' ' . $listing->agent->lastName;
 
-        $listing_agent_email;
         if($show_contact_info) {
             $listing_agent_email = $listing->agent->contact->email;
         } else {
@@ -900,7 +904,7 @@ HTML;
                 $link,
                 $main_photo,
                 $address,
-                $listing_USD,
+                $listing_price_USD,
                 $listing_bedrooms,
                 $listing_bathsFull,
                 $listing_mls_status,
@@ -939,7 +943,7 @@ HTML;
         /************************************************/
 
 
-        $contactFormData = SimplyRetsApiHelper::srContactFormDeliver();
+        $contact_markup = SimplyRetsApiHelper::srContactFormDeliver() . $contact_markup;
         // listing markup
         $cont .= <<<HTML
           <div class="sr-details" style="text-align:left;">
@@ -1060,14 +1064,14 @@ HTML;
                 $mlsid
               </tbody>
             </table>
-            {$contactFormData}
+            {$contact_markup}
             </div>
             $mapMarkup
             <script>$lh_analytics</script>
           </div>
 HTML;
         //$cont .= SimplyRetsApiHelper::srContactFormDeliver();
-        $cont .= $contact_markup;
+        //$cont .= $contact_markup;
 
         // Add disclaimer to the bottom of the page
         $disclaimer = SrUtils::mkDisclaimerText($last_update);
@@ -1262,7 +1266,7 @@ HTML;
 
             // append markup for this listing to the content
             $propText = abbrToText($propType);
-            $resultsMarkup .= <<<HTML
+            $resultsMarkup = <<<HTML
             <div class="sr-listing--gallery">            	
               	<div class="sr-listing">
 	                <a class="clearfix" href="$link">
@@ -1436,7 +1440,7 @@ HTML;
 
 
     public static function srContactFormMarkup($listing) {
-        $markup .= '<hr>';
+        $markup = '<hr>';
         $markup .= '<div id="sr-contact-form">';
         $markup .= '<h3>Contact us about this listing</h3>';
         $markup .= '<form id="quote-form" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
@@ -1544,7 +1548,7 @@ HTML;
             $listing_office  = $l->office->name;
             $compliance_markup = SrUtils::mkListingSummaryCompliance($listing_office);
 
-            $inner .= <<<HTML
+            $inner = <<<HTML
                 <div class="sr-listing-slider-item">
                   <a href="$link">
                     <div class="sr-listing-slider-item-img" style="background-image: url('$photo')"></div>
