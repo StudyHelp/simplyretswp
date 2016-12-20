@@ -941,11 +941,6 @@ HTML;
 
         // listing markup
         $cont .= <<<HTML
-
-    <div class="row">
-    	<div class="col-sm-12">
-
-
           <div class="sr-details" style="text-align:left;">
             <p class="sr-details-links" style="clear:both;">
               $mapLink
@@ -971,7 +966,6 @@ HTML;
                   Galleria.run('.sr-gallery');
               }
             </script>
-
             <div class="sr-primary-details">
               <div class="sr-detail" id="sr-primary-details-beds">
                 <h3>$listing_bedrooms <small>Beds</small></h3>
@@ -987,10 +981,6 @@ HTML;
               </div>
             </div>
             $remarks_markup
-
-        </div><!-- End col-sm-12 -->
-        <div class="col-sm-8">
-
             <table style="width:100%;">
               <thead>
                 <tr>
@@ -1068,24 +1058,12 @@ HTML;
                 $mlsid
               </tbody>
             </table>
-        </div><!-- End col-sm-8 -->
-
-
-        <!--contact markup should go here-->
-
-
-        <div class="col-sm-12">
             $mapMarkup
             <script>$lh_analytics</script>
-
-
-	    </div> <!-- End col-sm-12 -->
-	</div><!-- End row -->
-
+          </div>
 HTML;
-		$cont .= '<div class="col-sm-4">' . SimplyRetsApiHelper::srContactFormDeliver();
+        $cont .= SimplyRetsApiHelper::srContactFormDeliver();
         $cont .= $contact_markup;
-        $cont .= '</div>';
 
         // Add disclaimer to the bottom of the page
         $disclaimer = SrUtils::mkDisclaimerText($last_update);
@@ -1458,25 +1436,17 @@ HTML;
         $markup .= '<div id="sr-contact-form">';
         $markup .= '<h3>Contact us about this listing</h3>';
         $markup .= '<form id="quote-form" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
-        $markup .= '<div class="row">';
-		$markup .= '<div class="col-sm-6">';
         $markup .= '<p>';
         $markup .= '<input type="hidden" name="sr-cf-listing" value="' . $listing . '" />';
         // $markup .= 'Your Name (required) <br/>';
         $markup .= '<input type="text" placeholder="Name" name="sr-cf-name" pattern="[a-zA-Z0-9 ]+" value="'
             . ( isset( $_POST["sr-cf-name"] ) ? esc_attr( $_POST["sr-cf-name"] ) : '' ) . '" size="40" />';
         $markup .= '</p>';
-        $markup .= '</div>';
-		$markup .= '<div class="col-sm-6">';
         $markup .= '<p>';
         // $markup .= 'Your Email (required) <br/>';
         $markup .= '<input type="email"  placeholder="Email" name="sr-cf-email" value="'
             . ( isset( $_POST["sr-cf-email"] ) ? esc_attr( $_POST["sr-cf-email"] ) : '' ) . '" size="40" />';
         $markup .= '</p>';
-		$markup .= '</div>';
-		$markup .= '</div>';
-		$markup .= '<div class="row">';
-		$markup .= '<div class="col-sm-12">';
         $markup .= '<p>';
         // $markup .= 'Subject (required) <br/>';
         $markup .= '<input type="text"  placeholder="Subject" name="sr-cf-subject" pattern="[a-zA-Z ]+" value="'
@@ -1488,8 +1458,6 @@ HTML;
             . ( isset( $_POST["sr-cf-message"] ) ? esc_attr( $_POST["sr-cf-message"] ) : '' ) . '</textarea>';
         $markup .= '</p>';
         $markup .= '<p><input class="btn button btn-submit btn--cta" type="submit" name="sr-cf-submitted" value="Send"></p>';
-        $markup .= '</div>';
-        $markup .= '</div>';
         $markup .= '</form>';
         $markup .= '</div>';
 
