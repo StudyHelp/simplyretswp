@@ -939,6 +939,7 @@ HTML;
         /************************************************/
 
 
+        $contactFormData = SimplyRetsApiHelper::srContactFormDeliver();
         // listing markup
         $cont .= <<<HTML
           <div class="sr-details" style="text-align:left;">
@@ -981,6 +982,7 @@ HTML;
               </div>
             </div>
             $remarks_markup
+            <div class="col-sm-8">
             <table style="width:100%;">
               <thead>
                 <tr>
@@ -1058,11 +1060,13 @@ HTML;
                 $mlsid
               </tbody>
             </table>
+            {$contactFormData}
+            </div>
             $mapMarkup
             <script>$lh_analytics</script>
           </div>
 HTML;
-        $cont .= SimplyRetsApiHelper::srContactFormDeliver();
+        //$cont .= SimplyRetsApiHelper::srContactFormDeliver();
         $cont .= $contact_markup;
 
         // Add disclaimer to the bottom of the page
