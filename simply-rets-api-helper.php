@@ -924,7 +924,7 @@ HTML;
             $mapM = $mapHelper->render($map);
             $mapMarkup = <<<HTML
                 <hr>
-                <div id="details-map">
+                <div id="details-map" class="col-sm-12">
                   <h3>Map View</h3>
                   $mapM
                 </div>
