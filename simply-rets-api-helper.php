@@ -812,7 +812,7 @@ HTML;
         if( get_option('sr_show_leadcapture') ) {
             $contact_text = 'Contact us about this listing';
             $cf_listing = $listing_address . ' ( MLS #' . $listing_mlsid . ' )';
-            $contact_markup = SimplyRetsApiHelper::srContactFormMarkup($cf_listing);
+            $contact_markup = SimplyRetsApiHelper::srContactFormMarkup($cf_listing, false);
         } else {
             $contact_text = '';
             $contact_markup = '';
@@ -1442,8 +1442,11 @@ HTML;
     }
 
 
-    public static function srContactFormMarkup($listing) {
-        $markup = '<hr>';
+    public static function srContactFormMarkup($listing, $withHr = true) {
+        $markup = '';
+        if ($withHr) {
+            $markup .= '<hr>';
+        }
         $markup .= '<div id="sr-contact-form">';
         $markup .= '<h3>Contact us about this listing</h3>';
         $markup .= '<form id="quote-form" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
