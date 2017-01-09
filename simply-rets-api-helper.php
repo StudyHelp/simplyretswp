@@ -1208,6 +1208,7 @@ HTML;
         $mapHelper = SrSearchMap::srMapHelper();
         $map->setAutoZoom(true);
         $markerCount = 0;
+        $resultsMarkup = '';
 
         foreach( $response as $listing ) {
             $listing_uid        = $listing->mlsId;
@@ -1333,7 +1334,7 @@ HTML;
 
             // append markup for this listing to the content
             $propText = abbrToText($propType);
-            $resultsMarkup = <<<HTML
+            $resultsMarkup .= <<<HTML
             <div class="sr-listing--gallery">            	
               	<div class="sr-listing">
 	                <a class="clearfix" href="$link">
