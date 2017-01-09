@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.4
+* BUGFIX: Don't send empty 'status' and 'type' parameters to the API.
+* DOCUMENTATION: Update documentation for 'area' parameter.
+
+## 2.2.3
+* DOCUMENTATION: Remove unsupported 'lotsize' parameter from documentation.
+
+## 2.2.2
+* FEATURE: Add support for more API fields including Garage Spaces, HOA, and more.
+
 ## 2.2.1
 * FIX: Fix pagintation links when using 'counties' parameter
 

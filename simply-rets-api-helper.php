@@ -90,7 +90,7 @@ class SimplyRetsApiHelper {
         $php_version = phpversion();
         $site_url = get_site_url();
 
-        $ua_string     = "SimplyRETSWP/2.2.1 Wordpress/{$wp_version} PHP/{$php_version}";
+        $ua_string     = "SimplyRETSWP/2.2.4 Wordpress/{$wp_version} PHP/{$php_version}";
         $accept_header = "Accept: application/json; q=0.2, application/vnd.simplyrets-v0.1+json";
 
         if( is_callable( 'curl_init' ) ) {
@@ -210,7 +210,7 @@ class SimplyRetsApiHelper {
         $wp_version = get_bloginfo('version');
         $php_version = phpversion();
 
-        $ua_string     = "SimplyRETSWP/2.2.1 Wordpress/{$wp_version} PHP/{$php_version}";
+        $ua_string     = "SimplyRETSWP/2.2.4 Wordpress/{$wp_version} PHP/{$php_version}";
         $accept_header = "Accept: application/json; q=0.2, application/vnd.simplyrets-v0.1+json";
 
         if( is_callable( 'curl_init' ) ) {
@@ -572,6 +572,12 @@ HTML;
         // tax data
         $listing_taxdata = $listing->tax->id;
         $tax_data = SimplyRetsApiHelper::srDetailsTable($listing_taxdata, "Tax ID");
+        // tax year
+        $listing_tax_year = $listing->tax->taxYear;
+        $tax_year = SimplyRetsApiHelper::srDetailsTable($listing_tax_year, "Tax Year");
+        // tax annual amount
+        $listing_tax_annual_amount = $listing->tax->taxAnnualAmount;
+        $tax_annual_amount = SimplyRetsApiHelper::srDetailsTable($listing_tax_annual_amount, "Tax Annual Amount");
         // roof
         $listing_roof = $listing->property->roof;
         $roof = SimplyRetsApiHelper::srDetailsTable($listing_roof, "Roof");
@@ -671,6 +677,45 @@ HTML;
         $listing_lease_type = $listing->leaseType;
         $lease_type = SimplyRetsApiHelper::srDetailsTable($listing_lease_type, "Lease Type");
 
+        $listing_pool = $listing->property->pool;
+        $pool = SimplyRetsApiHelper::srDetailsTable($listing_pool, "Pool features");
+
+        // Garage and Parking info
+        $listing_garage_spaces = $listing->property->garageSpaces;
+        $garage_spaces = SimplyRetsApiHelper::srDetailsTable($listing_garage_spaces, "Garage spaces");
+
+        $listing_parking_spaces = $listing->property->parking->spaces;
+        $parking_spaces = SimplyRetsApiHelper::srDetailsTable($listing_parking_spaces, "Parking Spaces");
+
+        $listing_parking_description = $listing->property->parking->description;
+        $parking_description = SimplyRetsApiHelper::srDetailsTable(
+            $listing_parking_description, "Parking Description"
+        );
+
+        // association data
+        $listing_association_fee = $listing->association->fee;
+        $association_fee = SimplyRetsApiHelper::srDetailsTable($listing_association_fee, "Association Fee");
+
+        $listing_association_name = $listing->association->name;
+        $association_name = SimplyRetsApiHelper::srDetailsTable($listing_association_name, "Association Name");
+
+        $listing_association_amenities = $listing->association->amenities;
+        $association_amenities = SimplyRetsApiHelper::srDetailsTable(
+            $listing_association_amenities, "Association Amenities"
+        );
+
+        // Virtual tour URL
+        $listing_virtual_tour = $listing->virtualTourUrl;
+        if (!empty($listing_virtual_tour)) {
+            // Make the URL a link
+            $listing_virtual_tour = "<a href='$listing_virtual_tour' target='_blank'>"
+                                  . $listing_virtual_tour
+                                  . "</a>";
+
+        }
+
+        $virtual_tour = SimplyRetsApiHelper::srDetailsTable($listing_virtual_tour, "Virtual Tour URL");
+
 
         // area
         $area = $listing->property->area == 0
@@ -697,8 +742,8 @@ HTML;
         }
 
 
+        // Rooms data
         $roomsMarkup = '';
-
         if(is_array($listing->property->rooms)) {
 
             $rooms = $listing->property->rooms;
@@ -790,11 +835,12 @@ HTML;
 
         // list date and listing last modified
         $show_listing_meta = SrUtils::srShowListingMeta();
-
         if($show_listing_meta !== true) {
             $list_date = '';
             $date_modified_markup = '';
             $tax_data = '';
+            $tax_year = '';
+            $tax_annual_amount = '';
         }
 
         if( get_option('sr_show_listing_remarks') ) {
@@ -865,8 +911,11 @@ HTML;
 
         $agent = SimplyRetsApiHelper::srDetailsTable($listing_agent_name, "Listing Agent");
 
-        // Office
+        $listing_agent_phone = $listing->agent->contact->office;
+        $agent_phone = SimplyRetsApiHelper::srDetailsTable($listing_agent_phone, "Listing Agent Phone");
 
+
+        // Office
         $listing_office = $listing->office->name;
         $office = SimplyRetsApiHelper::srDetailsTable($listing_office, "Listing Office");
         $listing_office_phone = $listing->office->contact->office;
@@ -875,12 +924,16 @@ HTML;
         $listing_office_email = $listing->office->contact->email;
         $officeEmail = SimplyRetsApiHelper::srDetailsTable($listing_office_email, "Listing Office Email");
 
+        /* If show_contact_info is false, stub these fields */
         if(!$show_contact_info) {
+            $agent_phone = '';
             $officePhone = '';
             $officeEmail = '';
         }
 
+
         $compliance_markup = SrUtils::mkListingSummaryCompliance($listing_office);
+
 
         $galleria_theme = plugins_url('assets/galleria/themes/classic/galleria.classic.min.js', __FILE__);
 
@@ -1018,6 +1071,13 @@ HTML;
                 $accessibility
                 $lot_description
                 $laundry_features
+                $pool
+                $parking_description
+                $parking_spaces
+                $garage_spaces
+                $association_name
+                $association_fee
+                $association_amenities
                 $additional_rooms
                 $roomsMarkup
               </tbody>
@@ -1048,7 +1108,9 @@ HTML;
                 $officePhone
                 $officeEmail
                 $agent
+                $agent_phone
                 $terms
+                $virtual_tour
               </tbody>
               $school_data
               <thead>
@@ -1060,6 +1122,8 @@ HTML;
                 $list_date
                 $date_modified_markup
                 $tax_data
+                $tax_year
+                $tax_annual_amount
                 $mls_area
                 $mlsid
               </tbody>
@@ -1453,7 +1517,7 @@ HTML;
         $markup .= '<p>';
         $markup .= '<input type="hidden" name="sr-cf-listing" value="' . $listing . '" />';
         // $markup .= 'Your Name (required) <br/>';
-        $markup .= '<input type="text" placeholder="Name" name="sr-cf-name" pattern="[a-zA-Z0-9 ]+" value="'
+        $markup .= '<input type="text" placeholder="Name" name="sr-cf-name" value="'
             . ( isset( $_POST["sr-cf-name"] ) ? esc_attr( $_POST["sr-cf-name"] ) : '' ) . '" size="40" />';
         $markup .= '</p>';
         $markup .= '<p>';
@@ -1463,7 +1527,7 @@ HTML;
         $markup .= '</p>';
         $markup .= '<p>';
         // $markup .= 'Subject (required) <br/>';
-        $markup .= '<input type="text"  placeholder="Subject" name="sr-cf-subject" pattern="[a-zA-Z ]+" value="'
+        $markup .= '<input type="text"  placeholder="Subject" name="sr-cf-subject" value="'
             . ( isset( $_POST["sr-cf-subject"] ) ? esc_attr( $_POST["sr-cf-subject"] ) : '' ) . '" size="40" />';
         $markup .= '</p>';
         $markup .= '<p>';
@@ -1499,7 +1563,7 @@ HTML;
 
             // If email has been process for sending, display a success message
             if ( wp_mail( $to, $subject, $message, $headers ) ) {
-                echo '<div></div>';
+                echo '<div id="sr-contact-form-success">Your message was delivered successfully.</div>';
             } else {
                 echo 'An unexpected error occurred';
             }
