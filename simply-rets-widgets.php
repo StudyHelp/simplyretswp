@@ -145,35 +145,35 @@ class srAgentListingWidget extends WP_Widget {
 
         ?>
         <p>
-          <label for="<?php echo $this->get_field_id('title'); ?>">
+            <label for="<?php echo $this->get_field_id('title'); ?>">
                 <?php _e('Title:'); ?>
-          </label>
-          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
-                         name="<?php echo $this->get_field_name('title'); ?>"
-                         type="text"
-                         value="<?php echo $title; ?>" />
+            </label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+                   name="<?php echo $this->get_field_name('title'); ?>"
+                   type="text"
+                   value="<?php echo $title; ?>" />
         </p>
 
         <p>
-          <label for="<?php echo $this->get_field_id('agent'); ?>">
+            <label for="<?php echo $this->get_field_id('agent'); ?>">
                 <?php _e('Agent MLS Id:'); ?>
-          </label>
-          <input class="widefat"
-                         id="<?php echo $this->get_field_id('agent'); ?>"
-                         name="<?php echo $this->get_field_name('agent'); ?>"
-                         type="text"
-                         value="<?php echo $agent; ?>" />
+            </label>
+            <input class="widefat"
+                   id="<?php echo $this->get_field_id('agent'); ?>"
+                   name="<?php echo $this->get_field_name('agent'); ?>"
+                   type="text"
+                   value="<?php echo $agent; ?>" />
         </p>
 
         <p>
-          <label for="<?php echo $this->get_field_id('limit'); ?>">
+            <label for="<?php echo $this->get_field_id('limit'); ?>">
                 <?php _e('Amount of listings to show:'); ?>
-          </label>
-          <input class="widefat"
-                         id="<?php echo $this->get_field_id('limit'); ?>"
-                         name="<?php echo $this->get_field_name('limit'); ?>"
-                         type="text"
-                         value="<?php echo $limit; ?>" />
+            </label>
+            <input class="widefat"
+                   id="<?php echo $this->get_field_id('limit'); ?>"
+                   name="<?php echo $this->get_field_name('limit'); ?>"
+                   type="text"
+                   value="<?php echo $limit; ?>" />
         </p>
         <?php if(!$singleVendor) { ?>
             <p>
@@ -191,36 +191,36 @@ class srAgentListingWidget extends WP_Widget {
 
     /** front end widget render -- @see WP_Widget::widget */
     function widget( $args, $instance ) {
-       extract( $args );
-       $title  = apply_filters('widget_title', $instance['title']);
-       $agent  = $instance['agent'];
-       $limit  = $instance['limit'];
-       $vendor = $instance['vendor'];
+        extract( $args );
+        $title  = apply_filters('widget_title', $instance['title']);
+        $agent  = $instance['agent'];
+        $limit  = $instance['limit'];
+        $vendor = $instance['vendor'];
 
-       $cont .= $before_widget;
-       // populate title
-       if( $title ) {
-           $cont .= $before_title . $title . $after_title;
-       } else {
-           $cont .= $before_title . $after_title;
-       }
+        $cont .= $before_widget;
+        // populate title
+        if( $title ) {
+            $cont .= $before_title . $title . $after_title;
+        } else {
+            $cont .= $before_title . $after_title;
+        }
 
-       $settings = array(
-           'vendor' => $vendor
-       );
+        $settings = array(
+            'vendor' => $vendor
+        );
 
-       // populate content
-       if( $agent && $limit ) {
-           $params['agent'] = $agent;
-           $params['limit'] = $limit;
-           $params['vendor'] = $vendor;
-           $cont .= SimplyRetsApiHelper::retrieveWidgetListing( $params, $settings );
-       } else {
-           $cont .= "No listing found";
-       }
+        // populate content
+        if( $agent && $limit ) {
+            $params['agent'] = $agent;
+            $params['limit'] = $limit;
+            $params['vendor'] = $vendor;
+            $cont .= SimplyRetsApiHelper::retrieveWidgetListing( $params, $settings );
+        } else {
+            $cont .= "No listing found";
+        }
 
-       $cont .= $after_widget;
-       echo $cont;
+        $cont .= $after_widget;
+        echo $cont;
     }
 
 }
@@ -253,10 +253,10 @@ class srRandomListingWidget extends WP_Widget {
             <label for="<?php echo $this->get_field_id('title'); ?>">
                 <?php _e('Title:'); ?>
             </label>
-          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
-                 name="<?php echo $this->get_field_name('title'); ?>"
-                 type="text"
-                 value="<?php echo $title; ?>"
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+                   name="<?php echo $this->get_field_name('title'); ?>"
+                   type="text"
+                   value="<?php echo $title; ?>"
             />
         </p>
 
@@ -394,7 +394,7 @@ class srSearchFormWidget extends WP_Widget {
         $current_type = empty($_GET['sr_ptype']) ? '' : $_GET['sr_ptype'];
 
         $adv_search_types = get_option("sr_adv_search_meta_types_$ven",
-                                       array("Residential", "Condominium", "Rental" ));
+            array("Residential", "Condominium", "Rental" ));
 
         $type_options = '';
         foreach( (array)$adv_search_types as $key=>$type) {
@@ -410,45 +410,16 @@ class srSearchFormWidget extends WP_Widget {
         $search_form_markup = <<<HTML
           <div class="sr-search-widget">
             <form method="get" class="sr-search" action="$home_url">
+            <h3>Property Search</h3>
               <input type="hidden" name="sr-listings" value="sr-search">
 
               <div class="sr-search-field" id="sr-search-keywords">
-                <input name="sr_keywords" type="text" placeholder="Subdivision, Zipcode, or Keywords" />
-              </div>
-
-              <div class="sr-search-field" id="sr-search-ptype">
-                <select name="sr_ptype">
-                  <option value="">Property Type</option>
-                  $type_options
-                </select>
-              </div>
-
-              <div class="sr-search-widget-filters">
-                <div class="sr-search-widget-field" id="sr-search-minprice">
-                  <input name="sr_minprice" step="1000" min="0" type="number" placeholder="Min Price.." />
-                </div>
-                <div class="sr-search-widget-field" id="sr-search-maxprice">
-                  <input name="sr_maxprice" step="1000" min="0" type="number" placeholder="Max Price.." />
-                </div>
-
-                <div class="sr-search-widget-field" id="sr-search-minbeds">
-                  <input name="sr_minbeds" min="0" type="number" placeholder="Min Beds.." />
-                </div>
-                <div class="sr-search-widget-field" id="sr-search-maxbeds">
-                  <input name="sr_maxbeds" min="0" type="number" placeholder="Max Beds.." />
-                </div>
-
-                <div class="sr-search-widget-field" id="sr-search-minbaths">
-                  <input name="sr_minbaths" min="0" type="number" placeholder="Min Baths.." />
-                </div>
-                <div class="sr-search-widget-field" id="sr-search-maxbaths">
-                  <input name="sr_maxbaths" min="0" type="number" placeholder="Max Baths.." />
-                </div>
+                <input id="search-field" name="sr_keywords" type="text" placeholder="Enter an address, city, or zip" />
               </div>
 
               <input type="hidden" name="sr_vendor" value="$vendor" >
 
-              <input class="submit button btn" type="submit" value="Search Properties">
+              <input class="submit button btn--cta" type="submit" value="Search">
 
             </form>
           </div>
