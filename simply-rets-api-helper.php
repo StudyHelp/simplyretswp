@@ -648,7 +648,7 @@ HTML;
         $lotsizeareaunits_markup  = SimplyRetsApiHelper::srDetailsTable($listing_lotSizeAreaUnits, "Lot Size Area Units");
         // acres
         $listing_acres = $listing->property->acres;
-        $acres_markup  = SimplyRetsApiHelper::srDetailsTable($acres, "Acres");
+        $acres_markup  = SimplyRetsApiHelper::srDetailsTable($listing_acres, "Acres");
         // street address info
         $listing_postal_code = $listing->address->postalCode;
         $postal_code = SimplyRetsApiHelper::srDetailsTable($listing_postal_code, "Postal Code");
@@ -1053,8 +1053,6 @@ HTML;
                 $style
                 $lotsize_markup
 
-                $lotsizearea_markup
-                $lotsizeareaunits_markup
                 $acres_markup
 
                 $stories
