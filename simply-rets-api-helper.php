@@ -1051,7 +1051,6 @@ HTML;
                 $bathsHalf
                 $bathsTotal
                 $style
-                $lotsize_markup
 
                 $acres_markup
 
