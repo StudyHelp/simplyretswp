@@ -644,30 +644,80 @@ HTML;
               -->
             </div>
 
-            <!--hide stupid fields
-            <div class="sr-minmax-filters">
-              <div class="sr-search-field" id="sr-search-minprice">
-                <input name="sr_minprice" step="1000" min="0" type="number" value="<?php echo $minprice; ?>" placeholder="Min Price.." />
-              </div>
-              <div class="sr-search-field" id="sr-search-maxprice">
-                <input name="sr_maxprice" step="1000" min="0" type="number" value="<?php echo $maxprice; ?>" placeholder="Max Price.." />
-              </div>
+              <div class="sr-minmax-filters sr-minmax-filters-blocks row">
+                  <div class="sr-search-field col-md-2 form-group">
+                      <label>Minimum Price</label><input name="sr_minprice" step="1000" min="0" class="form-control" type="number" value="<?php echo $minprice; ?>" placeholder="0" />
+                  </div>
+                  <div class="sr-search-field col-md-2 form-group">
+                      <label>Maximum Price</label><input name="sr_maxprice" step="1000" min="0" class="form-control" type="number" value="<?php echo $maxprice; ?>" placeholder="&infin;" />
+                  </div>
 
-              <div class="sr-search-field" id="sr-search-minbeds">
-                <input name="sr_minbeds" min="0" type="number" value="<?php echo $minbeds; ?>" placeholder="Min Beds.." />
-              </div>
-              <div class="sr-search-field" id="sr-search-maxbeds">
-                <input name="sr_maxbeds" min="0" type="number" value="<?php echo $maxbeds; ?>" placeholder="Max Beds.." />
-              </div>
+                  <div class="sr-search-field col-md-2 form-group">
+                      <label for="select-min-beds">Minimum Bedrooms</label>
+                      <!--<input name="sr_minbeds" min="0" class="form-control" type="number" value="<?php /*echo $minbeds; */?>" placeholder="0" />-->
+                      <select id="select-min-beds" name="sr_minbeds" class="form-control">
+                          <?php
+                          $maxDropdown = 5; for ($i=0; $i<=$maxDropdown; $i++) {
+                              if ($minbeds!=='' AND $i===intval($minbeds)) {
+                                  $default = ' selected="selected"';
+                              } else {
+                                  $default = '';
+                              };
+                              echo "<option value='{$i}'{$default}>{$i}</option>";
+                          } ?>
+                      </select>
+                  </div>
+                  <div class="sr-search-field col-md-2 form-group">
+                      <label for="select-max-beds">Maximum Bedrooms</label>
+                      <!--<input name="sr_maxbeds" min="0" class="form-control" type="number" value="<?php /*echo $maxbeds; */?>" placeholder="&infin;" />-->
+                      <select id="select-max-beds" name="sr_maxbaths" class="form-control" type="number">
+                          <?php
+                          $defaultWasSet = 0; $maxDropdown = 4; for ($i=0; $i<=$maxDropdown; $i++) {
+                              if ($maxbeds!=='' AND $i===intval($maxbeds)) {
+                                  $default = ' selected="selected"';
+                                  $defaultWasSet = 1;
+                              } else {
+                                  $default = '';
+                              };
+                              echo "<option value='{$i}'{$default}>{$i}</option>";
+                          } ?>
+                          <option value="1000" <?php if (!$defaultWasSet) {echo 'selected="selected"';} ?>><?=++$maxDropdown ?>+</option>
+                      </select>
+                  </div>
 
-              <div class="sr-search-field" id="sr-search-minbaths">
-                <input name="sr_minbaths" min="0" type="number" value="<?php echo $minbaths; ?>" placeholder="Min Baths.." />
+                  <div class="sr-search-field col-md-2 form-group">
+                      <label for="select-min-baths">Minimum Bathrooms</label>
+                      <!--<input name="sr_minbaths" min="0" class="form-control" type="number" value="<?php /*echo $minbaths; */?>" placeholder="0" />-->
+                      <select id="select-min-baths" name="sr_minbaths" class="form-control">
+                          <?php
+                          $maxDropdown = 5; for ($i=0; $i<=$maxDropdown; $i++) {
+                              if ($minbaths!=='' AND $i===intval($minbaths)) {
+                                  $default = ' selected="selected"';
+                              } else {
+                                  $default = '';
+                              };
+                              echo "<option value='{$i}'{$default}>{$i}</option>";
+                          } ?>
+                      </select>
+                  </div>
+                  <div class="sr-search-field col-md-2 form-group">
+                      <label for="select-max-baths">Maximum Bathrooms</label>
+                      <!--<input name="sr_maxbaths" min="0" class="form-control" type="number" value="<?php /*echo $maxbaths; */?>" placeholder="&infin;" />-->
+                      <select id="select-max-baths" name="sr_maxbaths" class="form-control" type="number">
+                          <?php
+                          $defaultWasSet = 0; $maxDropdown = 4; for ($i=1; $i<=$maxDropdown; $i++) {
+                              if ($maxbaths!=='' AND $i===intval($maxbaths)) {
+                                  $default = ' selected="selected"';
+                                  $defaultWasSet = 1;
+                              } else {
+                                  $default = '';
+                              };
+                              echo "<option value='{$i}'{$default}>{$i}</option>";
+                          } ?>
+                          <option value="1000" <?php if (!$defaultWasSet) {echo 'selected="selected"';} ?>><?=++$maxDropdown ?>+</option>
+                      </select>
+                  </div>
               </div>
-              <div class="sr-search-field" id="sr-search-maxbaths">
-                <input name="sr_maxbaths" min="0" type="number" value="<?php echo $maxbaths; ?>" placeholder="Max Baths.." />
-              </div>
-            </div>
-			End hide unnecessary fields-->
             <input type="hidden" name="sr_vendor"  value="<?php echo $vendor; ?>"  />
             <input type="hidden" name="sr_brokers" value="<?php echo $brokers; ?>" />
             <input type="hidden" name="sr_agent"   value="<?php echo $agent; ?>" />
