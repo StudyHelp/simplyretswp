@@ -658,7 +658,7 @@ HTML;
                       <div class="sr-search-field col-md-3 form-group">
                           <label for="select-min-beds">Bedrooms</label>
                           <select id="select-min-beds" name="sr_minbeds" class="form-control"
-                                  onchange="$('input[name=sr_maxbeds]').val($(this).val());">
+                                  onchange="jQuery('input[name=sr_maxbeds]').val(jQuery(this).val());">
                               <option value="">Any count</option>
                               <?php
                               $maxDropdown = 5; for ($i=0; $i<=$maxDropdown; $i++) {
@@ -676,7 +676,7 @@ HTML;
                       <div class="sr-search-field col-md-3 form-group">
                           <label for="select-min-baths">Minimum Bathrooms</label>
                           <select id="select-min-baths" name="sr_minbaths" class="form-control"
-                                  onchange="$('input[name=sr_maxbaths]').val($(this).val());">
+                                  onchange="jQuery('input[name=sr_maxbaths]').val(jQuery(this).val());">
                               <option value="">Any count</option>
                               <?php
                               $maxDropdown = 5; for ($i=0; $i<=$maxDropdown; $i++) {
