@@ -655,13 +655,14 @@ HTML;
                           <label>Maximum Price</label><input name="sr_maxprice" step="1000" min="0" class="form-control" type="number" value="<?php echo $maxprice; ?>" placeholder="&infin;" />
                       </div>
 
+                      <?php $maxDropdown = 5; ?>
                       <div class="sr-search-field col-md-3 form-group">
                           <label for="select-min-beds">Bedrooms</label>
                           <select id="select-min-beds" name="sr_minbeds" class="form-control"
-                                  onchange="jQuery('input[name=sr_maxbeds]').val(jQuery(this).val());">
+                                  onchange="jQuery('input[name=sr_maxbeds]').val(jQuery(this).val()<<?=$maxDropdown ?>?jQuery(this).val():1000);">
                               <option value="">Any count</option>
                               <?php
-                              $maxDropdown = 5; for ($i=1; $i<=$maxDropdown; $i++) {
+                              for ($i=1; $i<$maxDropdown; $i++) {
                                   if ($minbeds!=='' AND $i===intval($minbeds)) {
                                       $default = ' selected="selected"';
                                   } else {
@@ -669,6 +670,7 @@ HTML;
                                   };
                                   echo "<option value='{$i}'{$default}>{$i}</option>";
                               } ?>
+                              <option value="<?= $maxDropdown ?>"><?=$maxDropdown ?>+</option>
                           </select>
                           <input type="hidden" name="sr_maxbeds" value="<?=$maxbeds ?>">
                       </div>
@@ -676,10 +678,10 @@ HTML;
                       <div class="sr-search-field col-md-3 form-group">
                           <label for="select-min-baths">Bathrooms</label>
                           <select id="select-min-baths" name="sr_minbaths" class="form-control"
-                                  onchange="jQuery('input[name=sr_maxbaths]').val(jQuery(this).val());">
+                                  onchange="jQuery('input[name=sr_maxbaths]').val(jQuery(this).val()<<?=$maxDropdown ?>?jQuery(this).val():1000);">
                               <option value="">Any count</option>
                               <?php
-                              $maxDropdown = 5; for ($i=1; $i<=$maxDropdown; $i++) {
+                              for ($i=1; $i<$maxDropdown; $i++) {
                                   if ($minbaths!=='' AND $i===intval($minbaths)) {
                                       $default = ' selected="selected"';
                                   } else {
@@ -687,6 +689,7 @@ HTML;
                                   };
                                   echo "<option value='{$i}'{$default}>{$i}</option>";
                               } ?>
+                              <option value="<?= $maxDropdown ?>"><?=$maxDropdown ?>+</option>
                           </select>
                           <input type="hidden" name="sr_maxbaths" value="<?=$maxbaths ?>">
                       </div>
