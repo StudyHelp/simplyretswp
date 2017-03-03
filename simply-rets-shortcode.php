@@ -661,7 +661,7 @@ HTML;
                                   onchange="jQuery('input[name=sr_maxbeds]').val(jQuery(this).val());">
                               <option value="">Any count</option>
                               <?php
-                              $maxDropdown = 5; for ($i=0; $i<=$maxDropdown; $i++) {
+                              $maxDropdown = 5; for ($i=1; $i<=$maxDropdown; $i++) {
                                   if ($minbeds!=='' AND $i===intval($minbeds)) {
                                       $default = ' selected="selected"';
                                   } else {
@@ -674,12 +674,12 @@ HTML;
                       </div>
 
                       <div class="sr-search-field col-md-3 form-group">
-                          <label for="select-min-baths">Minimum Bathrooms</label>
+                          <label for="select-min-baths">Bathrooms</label>
                           <select id="select-min-baths" name="sr_minbaths" class="form-control"
                                   onchange="jQuery('input[name=sr_maxbaths]').val(jQuery(this).val());">
                               <option value="">Any count</option>
                               <?php
-                              $maxDropdown = 5; for ($i=0; $i<=$maxDropdown; $i++) {
+                              $maxDropdown = 5; for ($i=1; $i<=$maxDropdown; $i++) {
                                   if ($minbaths!=='' AND $i===intval($minbaths)) {
                                       $default = ' selected="selected"';
                                   } else {
