@@ -670,7 +670,7 @@ HTML;
                                   };
                                   echo "<option value='{$i}'{$default}>{$i}</option>";
                               } ?>
-                              <option value="<?= $maxDropdown ?>"><?=$maxDropdown ?>+</option>
+                              <option value="<?= $maxDropdown ?>" <?php echo $maxDropdown===intval($minbeds)?'selected="selected"':''; ?>><?=$maxDropdown ?>+</option>
                           </select>
                           <input type="hidden" name="sr_maxbeds" value="<?=$maxbeds ?>">
                       </div>
@@ -689,7 +689,7 @@ HTML;
                                   };
                                   echo "<option value='{$i}'{$default}>{$i}</option>";
                               } ?>
-                              <option value="<?= $maxDropdown ?>"><?=$maxDropdown ?>+</option>
+                              <option value="<?= $maxDropdown ?>" <?php echo $maxDropdown===intval($minbaths)?'selected="selected"':''; ?>><?=$maxDropdown ?>+</option>
                           </select>
                           <input type="hidden" name="sr_maxbaths" value="<?=$maxbaths ?>">
                       </div>
