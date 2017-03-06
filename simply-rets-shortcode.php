@@ -693,10 +693,10 @@ HTML;
                           </select>
                           <input type="hidden" name="sr_maxbaths" value="<?=$maxbaths ?>">
                       </div>
-                  </div>
+                  <!--</div>-->
               <div class="col-md-2 form-group">
                   <label for="select-type">Type</label>
-                  <select id="select-type" name="sr_type">
+                  <select id="select-type" name="sr_type" class="form-control">
                       <?php foreach (['Residences/Rents'=>'', 'Residences only'=>'Residence', 'Rents only'=>"Rent", "Lands only"=>'Land'] AS $text=>$parameter) {
                           $selected = "";
                           if (!empty($_REQUEST['sr_type']) AND $_REQUEST['sr_type']===$parameter) {
@@ -710,7 +710,7 @@ HTML;
                       <label for="select-max-baths">&nbsp;</label>
                       <button type="submit" class="form-control">Apply filters</button>
                   </div>
-              <!--</div>-->
+              </div>
 
 
 
