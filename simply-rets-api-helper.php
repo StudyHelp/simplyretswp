@@ -1678,7 +1678,10 @@ function abbrToText($abbr) {
     $abbrList = [
         'RES' => 'Residence',
         'RNT' => 'Rent',
-        'LND' => 'Land'
+        'LND' => 'Land',
+        'MLF' => 'Multifamily',
+        'CND' => 'Condominium',
+        'CRE' => 'Commercial'
     ];
 
     if (array_key_exists($abbr, $abbrList)) {

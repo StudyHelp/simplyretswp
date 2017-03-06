@@ -697,7 +697,15 @@ HTML;
               <div class="col-md-2 form-group">
                   <label for="select-type">Type</label>
                   <select id="select-type" name="sr_type" class="form-control">
-                      <?php foreach (['Residences/Rents'=>'', 'Residences only'=>'Residence', 'Rents only'=>"Rent", "Lands only"=>'Land'] AS $text=>$parameter) {
+                      <?php foreach ([
+                                         'Residences/Rents' => '',
+                                         'Residences' => 'residence',
+                                         'Rents' => "rental",
+                                         "Multifamily" => "multifamily",
+                                         "Condominium" => 'condominium',
+                                         "Commercial" => 'commercial',
+                                         "Lands" => 'land'
+                                     ] AS $text=>$parameter) {
                           $selected = "";
                           if (!empty($_REQUEST['sr_type']) AND $_REQUEST['sr_type']===$parameter) {
                               $selected = " selected=\"selected\"";
