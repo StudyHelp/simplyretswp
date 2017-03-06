@@ -647,16 +647,16 @@ HTML;
 
 
               <div class="sr-minmax-filters-blocks row">
-                  <div class="sr-minmax-filters row col-md-10">
-                      <div class="sr-search-field col-md-3 form-group">
+                  <!--<div class="sr-minmax-filters row col-md-10">-->
+                      <div class="sr-search-field col-md-2 form-group">
                           <label>Minimum Price</label><input name="sr_minprice" step="1000" min="0" class="form-control" type="number" value="<?php echo $minprice; ?>" placeholder="0" />
                       </div>
-                      <div class="sr-search-field col-md-3 form-group">
+                      <div class="sr-search-field col-md-2 form-group">
                           <label>Maximum Price</label><input name="sr_maxprice" step="1000" min="0" class="form-control" type="number" value="<?php echo $maxprice; ?>" placeholder="&infin;" />
                       </div>
 
                       <?php $maxDropdown = 5; ?>
-                      <div class="sr-search-field col-md-3 form-group">
+                      <div class="sr-search-field col-md-2 form-group">
                           <label for="select-min-beds">Bedrooms</label>
                           <select id="select-min-beds" name="sr_minbeds" class="form-control"
                                   onchange="jQuery('input[name=sr_maxbeds]').val(jQuery(this).val()<<?=$maxDropdown ?>?jQuery(this).val():1000);">
@@ -675,7 +675,7 @@ HTML;
                           <input type="hidden" name="sr_maxbeds" value="<?=$maxbeds ?>">
                       </div>
 
-                      <div class="sr-search-field col-md-3 form-group">
+                      <div class="sr-search-field col-md-2 form-group">
                           <label for="select-min-baths">Bathrooms</label>
                           <select id="select-min-baths" name="sr_minbaths" class="form-control"
                                   onchange="jQuery('input[name=sr_maxbaths]').val(jQuery(this).val()<<?=$maxDropdown ?>?jQuery(this).val():1000);">
@@ -694,11 +694,23 @@ HTML;
                           <input type="hidden" name="sr_maxbaths" value="<?=$maxbaths ?>">
                       </div>
                   </div>
+              <div class="col-md-2 form-group">
+                  <label for="select-type">Type</label>
+                  <select id="select-type" name="sr_type">
+                      <?php foreach (['Residences/Rents'=>'', 'Residences only'=>'Residence', 'Rents only'=>"Rent", "Lands only"=>'Land'] AS $text=>$parameter) {
+                          $selected = "";
+                          if (!empty($_REQUEST['sr_type']) AND $_REQUEST['sr_type']===$parameter) {
+                              $selected = " selected=\"selected\"";
+                          }
+                          echo "<option value=\"{$parameter}\"{$selected}>{$text}</option>";
+                      } ?>
+                  </select>
+              </div>
                   <div class="col-md-2 form-group">
                       <label for="select-max-baths">&nbsp;</label>
                       <button type="submit" class="form-control">Apply filters</button>
                   </div>
-              </div>
+              <!--</div>-->
 
 
 

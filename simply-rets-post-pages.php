@@ -539,6 +539,7 @@ class SimplyRetsCustomPostPages {
                       . get_query_var( 'sr_q',        '' );
             $brokers  = get_query_var( 'sr_brokers', '' );
             $water    = get_query_var( 'water', '' );
+            $type     = get_query_var( 'sr_type', '' );
             /** Pagination */
             $limit    = get_query_var( 'limit', '' );
             $offset   = get_query_var( 'offset', '' );
@@ -683,6 +684,7 @@ class SimplyRetsCustomPostPages {
                 "minprice"  => $minprice,
                 "maxprice"  => $maxprice,
                 "water"     => $water,
+                "type"      => $type,
 
                 /** Pagination */
                 "limit"     => $limit,
@@ -851,4 +853,3 @@ class SimplyRetsCustomPostPages {
     }
 
 }
-?>

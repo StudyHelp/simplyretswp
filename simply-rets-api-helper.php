@@ -1677,7 +1677,8 @@ HTML;
 function abbrToText($abbr) {
     $abbrList = [
         'RES' => 'Residence',
-        'RNT' => 'Rent'
+        'RNT' => 'Rent',
+        'LND' => 'Land'
     ];
 
     if (array_key_exists($abbr, $abbrList)) {
