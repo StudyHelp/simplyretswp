@@ -700,11 +700,11 @@ HTML;
                       <?php foreach ([
                                          'Residences/Rents' => '',
                                          'Residences' => 'residence',
-                                         'Rents' => "rental",
+                                         'Rentals' => "rental",
                                          "Multifamily" => "multifamily",
                                          "Condominium" => 'condominium',
                                          "Commercial" => 'commercial',
-                                         "Lands" => 'land'
+                                         "Land" => 'land'
                                      ] AS $text=>$parameter) {
                           $selected = "";
                           if (!empty($_REQUEST['sr_type']) AND $_REQUEST['sr_type']===$parameter) {
