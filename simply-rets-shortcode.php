@@ -698,7 +698,7 @@ HTML;
                   <label for="select-type">Type</label>
                   <select id="select-type" name="sr_type" class="form-control">
                       <?php foreach ([
-                                         'Residences/Rents' => '',
+                                         'Residences/Rentals' => '',
                                          'Residences' => 'residence',
                                          'Rentals' => "rental",
                                          "Multifamily" => "multifamily",
