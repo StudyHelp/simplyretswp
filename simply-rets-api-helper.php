@@ -858,7 +858,11 @@ HTML;
         if( get_option('sr_show_leadcapture') ) {
             $contact_text = 'Contact us about this listing';
             $cf_listing = $listing_address . ' ( MLS #' . $listing_mlsid . ' )';
-            $contact_markup = SimplyRetsApiHelper::srContactFormMarkup($cf_listing, false);
+            if (isset($_ENV['CONTACT_LISTING_FORM_ID']) and function_exists('do_shortcode')) {
+                do_shortcode( '[contact-form-7 id="'.$_ENV['CONTACT_LISTING_FORM_ID'].'" title="Contact Listing Form"]' );
+            } else {
+                $contact_markup = SimplyRetsApiHelper::srContactFormMarkup($cf_listing, false);
+            }
         } else {
             $contact_text = '';
             $contact_markup = '';
