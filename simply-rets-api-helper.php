@@ -859,7 +859,8 @@ HTML;
             $contact_text = 'Contact us about this listing';
             $cf_listing = $listing_address . ' ( MLS #' . $listing_mlsid . ' )';
             if (isset($_ENV['CONTACT_LISTING_FORM_ID']) and function_exists('do_shortcode')) {
-                do_shortcode( '[contact-form-7 id="'.$_ENV['CONTACT_LISTING_FORM_ID'].'" title="Contact Listing Form"]' );
+                $contact_markup = '<div id="sr-contact-form"><h3>Contact us about listing</h3>'.
+                    do_shortcode( '[contact-form-7 id="'.$_ENV['CONTACT_LISTING_FORM_ID'].'" title="Contact Listing Form"]' ).'</div>';
             } else {
                 $contact_markup = SimplyRetsApiHelper::srContactFormMarkup($cf_listing, false);
             }
